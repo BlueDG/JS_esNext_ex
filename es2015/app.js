@@ -46,7 +46,69 @@ console.log(temperature);
     console.log(nycId);
     console.log(otherCitiesId.length);
 
-    /* *************** */
+
+    /* CLASSES */
 
 
+    class Trip {
+        constructor(id, name, imageUrl) {
+            this.id = id;
+            this.name = name;
+            this.imageUrl = imageUrl;
+        }
+
+
+        toString() {
+            return 'Trip [' + this.id + ', ' + this.name + ', ' + this.imageUrl + ', ' + this._price +']';
+        }
+
+
+        get price(){
+            return this._price;
+        }
     
+        set price(newPrice) {
+            this._price = newPrice;
+        }
+
+
+        static getDefaultTrip() {
+            return new Trip('rio-de-janeiro', 'Rio de Janeiro', 'img/rio-de-janeiro.jpg');
+        }
+        
+    }
+
+    let parisTrip = new Trip('paris','Paris','img/paris.jpg'); // une instance de trip avec des infos spécifiques
+    parisTrip.price = 100.
+    console.log(parisTrip);
+    console.log(parisTrip.name);
+    console.log(parisTrip.toString());
+
+    const defaultTrip = Trip.getDefaultTrip();
+    console.log(defaultTrip.toString());
+
+
+     /* HERITAGE */
+
+
+     class FreeTrip extends Trip {
+
+        constructor(id, name, imageUrl) {
+            super(id, name, imageUrl);
+            this.price = 0; // pas de this._price car on crée le notre ici. 
+
+        }
+
+        toString() {
+
+            return 'Free'+super.toString(); // avec super, j'appelle la méthode de la classe parente. J'ajoute juste Free avec de la concat.
+        }
+
+
+     }
+
+     let freeTrip = new FreeTrip('nantes', 'Nantes', 'img/nantes.jpg');
+     console.log(freeTrip.toString());
+
+
+     
